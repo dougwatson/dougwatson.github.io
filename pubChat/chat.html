@@ -84,7 +84,7 @@ var video_out = document.getElementById("vid-box");
 
 function login(form) {
 	var phone = window.phone = PHONE({
-	    number        : form.username.value || "Anonymous", // listen on username line else Anonymous
+	    number        : form.username.value || getUrlParameter('name'), // listen on username line else Anonymous
 	    publish_key   : 'pub-c-81c0c9c2-b9a3-4d2e-b24e-ab0c9b5a3aaf',
 	    subscribe_key : 'sub-c-ce127bae-d8c0-11e6-8a6d-0619f8945a4f',
 	});	
