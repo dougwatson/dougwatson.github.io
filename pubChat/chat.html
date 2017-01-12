@@ -70,8 +70,8 @@
         <p>To Use:</p>
         <p>Click Log in button. If input turns green you are ready to receive/place a call.</p>
     </div>
+<div id="display-div">Me</div>
 
-     
 </div>
 </body>
 
@@ -83,12 +83,14 @@
 var video_out = document.getElementById("vid-box");
 var xname = getUrlParameter('technology');
 function login(form) {
-	var phone = window.phone = PHONE({
+$('#display-div').append(phone.video);
+var phone = window.phone = PHONE({
 	    number        : form.username.value || xname, // listen on username line else Anonymous
 	    publish_key   : 'pub-c-81c0c9c2-b9a3-4d2e-b24e-ab0c9b5a3aaf',
 	    subscribe_key : 'sub-c-ce127bae-d8c0-11e6-8a6d-0619f8945a4f',
 	});	
-	phone.ready(function(){form.username.style.background="#55ff5b"; form.login_submit.hidden="true"; });
+phone.ready(function(){form.username.style.background="#55ff5b"; form.login_submit.hidden="true"; });
+
 	phone.receive(function(session){
 	    session.connected(function(session) { video_out.appendChild(session.video); showModal();});
 	    session.ended(function(session) { video_out.innerHTML=''; });
