@@ -15,6 +15,7 @@
 	<!-- link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" / -->
 </head>
 <body>
+	                 <div id="vid-thumb"></div>
 <div class = "bodyDiv">
     
     <div class="md-modal md-effect-13" id="modal-13">
@@ -81,6 +82,7 @@
 <script type="text/javascript">
 
 var video_out = document.getElementById("vid-box");
+var vid_thumb = document.getElementById("vid-thumb");
 var xname = getUrlParameter('technology');
 function login(form) {
 $('#display-div').append(phone.video);
@@ -89,6 +91,15 @@ var phone = window.phone = PHONE({
 	    publish_key   : 'pub-c-81c0c9c2-b9a3-4d2e-b24e-ab0c9b5a3aaf',
 	    subscribe_key : 'sub-c-ce127bae-d8c0-11e6-8a6d-0619f8945a4f',
 	});	
+
+var ctrl = window.ctrl = CONTROLLER(phone, get_xirsys_servers);
+ctrl.ready(function(){
+form.username.style.background="#55ff5b"; 
+form.login_submit.hidden="true"; 
+ctrl.addLocalStream(vid_thumb);
+addLog("Logged in as " + form.username.value); 
+});
+
 phone.ready(function(){form.username.style.background="#55ff5b"; form.login_submit.hidden="true"; });
 
 	phone.receive(function(session){
