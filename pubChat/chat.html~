@@ -6,18 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script type="text/javascript">
-	    var host = "dougwatson.github.io";
-	    if ((host == window.location.host) && (window.location.protocol != "https:"))
-	        window.location.protocol = "https";
-	</script>
+	    if ((window.location.host == "dougwatson.github.io") && (window.location.protocol != "https:")) window.location.protocol = "https";
+    </script>
     
-    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
-    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
-    <script src="js/modernizr.custom.js"></script>
-	<link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" />
-
-
-    
+    <!-- link rel="stylesheet" type="text/css" href="stylesheets/style.css" / -->
+    <!-- link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.3.0/css/font-awesome.min.css" / -->
+    <!-- script src="js/modernizr.custom.js"></script -->
+	<!-- link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" / -->
 </head>
 <body>
 <div class = "bodyDiv">
@@ -42,9 +37,9 @@
                             <span class="input__label-content input__label-content--nao">                                          
                             </span>
                         </label>
-                    <svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                    <!--svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
                         <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
-                    </svg>
+                    </svg-->
             </span>
             
                <button class="cbutton cbutton--effect-radomir" type="submit" name="login_submit" value="Log In" style="margin-top: 40px; margin-left:-10px">
@@ -59,9 +54,9 @@
 						<span class="input__label-content input__label-content--nao">                                          
                         </span>
 					</label>
-				<svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+				<!--svg class="graphic graphic--nao" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
 				    <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"/>
-				</svg>
+				</svg-->
         </span>
         
         <button class="cbutton cbutton--effect-radomir md-trigger" type="submit" value="Call" style="margin-top: 40px; margin-left:-10px" data-modal="modal-13">
@@ -75,8 +70,8 @@
         <p>To Use:</p>
         <p>Click Log in button. If input turns green you are ready to receive/place a call.</p>
     </div>
+<div id="display-div">Me</div>
 
-     
 </div>
 </body>
 
@@ -86,14 +81,16 @@
 <script type="text/javascript">
 
 var video_out = document.getElementById("vid-box");
-
+var xname = getUrlParameter('technology');
 function login(form) {
-	var phone = window.phone = PHONE({
-	    number        : form.username.value || "Anonymous", // listen on username line else Anonymous
+$('#display-div').append(phone.video);
+var phone = window.phone = PHONE({
+	    number        : form.username.value || xname, // listen on username line else Anonymous
 	    publish_key   : 'pub-c-81c0c9c2-b9a3-4d2e-b24e-ab0c9b5a3aaf',
 	    subscribe_key : 'sub-c-ce127bae-d8c0-11e6-8a6d-0619f8945a4f',
 	});	
-	phone.ready(function(){form.username.style.background="#55ff5b"; form.login_submit.hidden="true"; });
+phone.ready(function(){form.username.style.background="#55ff5b"; form.login_submit.hidden="true"; });
+
 	phone.receive(function(session){
 	    session.connected(function(session) { video_out.appendChild(session.video); showModal();});
 	    session.ended(function(session) { video_out.innerHTML=''; });
